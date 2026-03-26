@@ -1,20 +1,30 @@
 # Lumon Plymouth Theme
 
-A visually appealing Plymouth splash screen theme inspired by the Lumon Industries aesthetic from *Severance*. It features a 167-frame animation that plays during the boot and shutdown process.
+A visually appealing Plymouth splash screen theme inspired by the Lumon Industries aesthetic from *Severance*. It features a 168-frame animation that plays during the boot and shutdown process.
 
 ## Features
 
-- 167-frame animation sequence.
+- 168-frame animation sequence.
 - Centered layout compatible with various screen resolutions.
 - Simple installation script included.
 
-## Installation
+## Quick Install (One-liner)
 
-To install and set the Lumon theme as your default Plymouth splash:
+To install and set the Lumon theme as your default Plymouth splash screen, run the following command in your terminal:
 
-1.  **Navigate to the theme directory:**
+```bash
+curl -sSL https://raw.githubusercontent.com/namelessmonarch0/PlymouthLumonSplash/main/install.sh | sudo bash
+```
+
+This will automatically clone the repository, copy the theme files, and register it as your default splash.
+
+## Manual Installation
+
+If you prefer to install manually or have already cloned the repository:
+
+1.  **Navigate to the root directory:**
     ```bash
-    cd contents/splash-sequence
+    cd PlymouthLumonSplash
     ```
 
 2.  **Run the installation script with sudo:**
@@ -27,7 +37,7 @@ The script will:
 - Register the theme with Plymouth.
 - Update your `initramfs` (using `plymouth-set-default-theme -R`).
 
-## Manual Installation
+## Manual Steps (Advanced)
 
 If the script doesn't work for your distribution, follow these manual steps:
 
@@ -36,9 +46,9 @@ If the script doesn't work for your distribution, follow these manual steps:
     sudo mkdir -p /usr/share/plymouth/themes/lumon
     ```
 
-2.  Copy all files to that directory:
+2.  Copy all files from `contents/splash/` to that directory:
     ```bash
-    sudo cp ./*.png ./*.plymouth ./*.script /usr/share/plymouth/themes/lumon/
+    sudo cp contents/splash/*.png contents/splash/*.plymouth contents/splash/*.script /usr/share/plymouth/themes/lumon/
     ```
 
 3.  Apply the theme (Debian/Ubuntu/Fedora):
@@ -48,13 +58,14 @@ If the script doesn't work for your distribution, follow these manual steps:
 
     *On some distributions like Arch Linux, you might need to manually update your `initramfs`:*
     ```bash
-    sudo mkinitcpio -p linux
+    sudo mkinitcpio -P linux
     ```
 
 ## Requirements
 
 - **Plymouth:** Ensure Plymouth is installed and configured on your system.
 - **Root Privileges:** Required to write to `/usr/share/plymouth/`.
+- **Git:** Required for the quick install script.
 
 ## Preview
 
