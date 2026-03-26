@@ -1,0 +1,42 @@
+# Define the total number of frames in your image sequence
+total_frames = 167; 
+
+# 1. Load the images into an array
+for (i = 0; i < total_frames; i++) {
+    frames[i] = Image("frame-" + i + ".png");
+}
+
+# 2. Create the sprite that will display the images
+animation_sprite = Sprite();
+
+# 3. Create the animation loop and speed control
+tick = 0;
+
+# Set your speed factor here. 
+# 1 = Normal (50 FPS), 2 = Half speed (25 FPS), 3 = Third speed (~16 FPS)
+speed_factor = 2; 
+
+fun refresh_callback () {
+    # Calculate the current frame using the speed factor
+    current_frame = Math.Int(tick / speed_factor) % total_frames;
+    
+    # Get the CURRENT screen and image dimensions
+    screen_width = Window.GetWidth();
+    screen_height = Window.GetHeight();
+    image_width = frames[current_frame].GetWidth();
+    image_height = frames[current_frame].GetHeight();
+    
+    # Dynamically calculate the center to handle resolution changes during boot
+    center_x = Math.Int((screen_width / 2) - (image_width / 2));
+    center_y = Math.Int((screen_height / 2) - (image_height / 2));
+    
+    # Apply the coordinates and update the image
+    animation_sprite.SetX(center_x);
+    animation_sprite.SetY(center_y);
+    animation_sprite.SetImage(frames[current_frame]);
+    
+    tick++;
+}
+
+# Tell Plymouth to use your refresh function
+Plymouth.SetRefreshFunction(refresh_callback);

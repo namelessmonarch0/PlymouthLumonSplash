@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Lumon
+Description=Lumon Splash Screen
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/lumon
+ScriptFile=/usr/share/plymouth/themes/lumon/lumon.script
